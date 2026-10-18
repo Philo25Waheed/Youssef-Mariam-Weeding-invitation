@@ -17,48 +17,42 @@ const WEDDING_CONFIG = {
   // Wedding Date & Time
   // Format for countdown: YYYY-MM-DDTHH:MM:SS
   weddingDate: "2026-10-26T18:00:00", 
-  weddingDateFull: "Monday, October 26, 2026",
-  weddingDateSimple: "October 26, 2026",
+  weddingDateFull: "Monday, October 26, 2026 • 6:00 PM",
+  weddingDateSimple: "October 26, 2026 • 6:00 PM",
 
-  // Venue & Location
+  // Church Venue & Location
   venueName: "Virgin Mary & St. Rewais Church",
   venueAddress: "Hadayek Al-Ahram (Pyramids Gardens), Giza, Egypt",
-  venueCity: "Hadayek Al-Ahram, Giza",
+  venueCity: "Hadayek Al-Ahram & 6th of October, Giza",
   googleMapsUrl: "https://maps.app.goo.gl/CBjrAVfnbpcSWrjf9",
 
+  // Hall Venue & Location (Added after the Church)
+  hallName: "Mountain Rose Hall (ماونتن روز)",
+  hallAddress: "First 6th of October, Giza Governorate, Egypt",
+  hallCity: "6th of October, Giza",
+  hallMapsUrl: "https://maps.app.goo.gl/5ZekUeBHkc76AMQB8",
 
-  // Story Images (Can be local paths e.g. 'assets/images/photo1.jpg' or remote URLs)
-  storyImage1: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
-  storyImage2: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80",
+  // Story Images (Folder images)
+  storyImage1: "WhatsApp Image 2026-10-17 at 8.07.45 PM.jpeg",
+  storyImage2: "WhatsApp Image 2026-10-17 at 8.07.45 PM (1).jpeg",
 
-  // Venue Image
+  // Venue Images
   venueImage: "https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&w=1400&q=85",
+  hallImage: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1400&q=85",
 
-  // Gallery Photos
+  // Gallery Photos (Folder images)
   galleryImages: [
     {
-      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=80",
-      caption: "A Promise for Eternity"
+      src: "WhatsApp Image 2026-10-17 at 8.07.45 PM.jpeg",
+      caption: "Youssef & Mariam"
     },
     {
-      src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1000&q=80",
-      caption: "Golden Blooms"
+      src: "WhatsApp Image 2026-10-17 at 8.07.45 PM (1).jpeg",
+      caption: "A Celebration of Love"
     },
     {
-      src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1000&q=80",
+      src: "WhatsApp Image 2026-10-17 at 8.07.46 PM.jpeg",
       caption: "Sunset Whispers"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
-      caption: "Intimate Table Setting"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1400&q=80",
-      caption: "Symbols of Commitment"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=1000&q=80",
-      caption: "The Journey Ahead"
     }
   ],
 
@@ -125,6 +119,31 @@ function initDynamicConfig() {
       el.href = WEDDING_CONFIG.googleMapsUrl;
     }
   });
+
+  // Update Hall Info (Mountain Rose)
+  document.querySelectorAll(".data-hall-name").forEach(el => {
+    el.textContent = WEDDING_CONFIG.hallName;
+  });
+  document.querySelectorAll(".data-hall-address").forEach(el => {
+    el.textContent = WEDDING_CONFIG.hallAddress;
+  });
+  document.querySelectorAll(".data-hall-maps-url").forEach(el => {
+    if (el.tagName === "A") {
+      el.href = WEDDING_CONFIG.hallMapsUrl;
+    }
+  });
+
+  // Update Story Images
+  if (WEDDING_CONFIG.storyImage1) {
+    document.querySelectorAll(".data-story-img-1").forEach(el => {
+      el.src = WEDDING_CONFIG.storyImage1;
+    });
+  }
+  if (WEDDING_CONFIG.storyImage2) {
+    document.querySelectorAll(".data-story-img-2").forEach(el => {
+      el.src = WEDDING_CONFIG.storyImage2;
+    });
+  }
 
   // Update Document Title
   document.title = `${WEDDING_CONFIG.groomName} & ${WEDDING_CONFIG.brideName} — Wedding Invitation`;
@@ -371,7 +390,7 @@ function initCalendarGenerator() {
   btn.addEventListener("click", () => {
     const title = `${WEDDING_CONFIG.groomName} & ${WEDDING_CONFIG.brideName}'s Wedding`;
     const description = `Celebrate the holy matrimony of ${WEDDING_CONFIG.groomName} and ${WEDDING_CONFIG.brideName}.`;
-    const location = `${WEDDING_CONFIG.venueName}, ${WEDDING_CONFIG.venueAddress}`;
+    const location = `${WEDDING_CONFIG.venueName} & ${WEDDING_CONFIG.hallName}`;
 
     // Target start and end time in UTC
     const startDate = new Date(WEDDING_CONFIG.weddingDate);

@@ -67,6 +67,8 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
 }
 
 body {
@@ -77,6 +79,8 @@ body {
   line-height: 1.8;
   font-weight: 300;
   overflow-x: hidden;
+  width: 100%;
+  min-width: 0;
   letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -89,6 +93,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0.03em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 img {
@@ -101,6 +107,7 @@ a {
   color: inherit;
   text-decoration: none;
   transition: var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
 }
 
 button, input, select, textarea {
@@ -108,6 +115,7 @@ button, input, select, textarea {
   font-size: inherit;
   color: inherit;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Focus Visible for Accessibility */
@@ -118,8 +126,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* Section Containers */
 .section {
-  padding: clamp(5rem, 8vw, 8.5rem) 1.5rem;
+  padding: clamp(3.5rem, 6vw, 8.5rem) clamp(1rem, 3.5vw, 1.5rem);
   position: relative;
+  width: 100%;
+  overflow-x: clip;
 }
 
 .bg-ivory-tint {
@@ -536,21 +546,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .hero-invitation-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: var(--border-gold-hairline);
-  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  padding: clamp(1.8rem, 5vw, 4.5rem) clamp(1rem, 4vw, 3.5rem);
   box-shadow: var(--shadow-card);
   border-radius: var(--radius-md);
   margin: 0 auto;
+  width: 100%;
+  max-width: 760px;
 }
 
 .hero-pretitle {
   font-family: var(--font-script);
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-size: clamp(1.3rem, 2.8vw, 2.3rem);
   color: var(--color-gold);
   letter-spacing: 0.05em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .hero-names {
@@ -559,29 +572,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   align-items: center;
   gap: 0.2rem;
   margin-bottom: 1.2rem;
+  width: 100%;
 }
 
 .hero-name-bride,
 .hero-name-groom {
-  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  font-size: clamp(1.8rem, 6.5vw, 5.2rem);
   font-weight: 300;
-  letter-spacing: 0.1em;
+  letter-spacing: clamp(0.04em, 1.2vw, 0.1em);
   text-transform: uppercase;
   color: var(--color-text-main);
   line-height: 1.1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .hero-ampersand {
   font-family: var(--font-script);
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
   color: var(--color-gold);
-  line-height: 0.8;
+  line-height: 0.85;
   margin: 0.2rem 0;
 }
 
 .hero-invitation-text {
-  font-size: 0.88rem;
-  letter-spacing: 0.12em;
+  font-size: clamp(0.78rem, 1.6vw, 0.88rem);
+  letter-spacing: clamp(0.06em, 1vw, 0.12em);
   text-transform: uppercase;
   color: var(--color-text-muted);
   max-width: 480px;
@@ -591,11 +608,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .hero-date {
   font-family: var(--font-serif);
-  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.8rem);
   color: var(--color-text-main);
-  letter-spacing: 0.12em;
+  letter-spacing: clamp(0.06em, 1vw, 0.12em);
   text-transform: uppercase;
   margin-bottom: 0.3rem;
+  word-break: break-word;
 }
 
 .hero-location-preview {
@@ -675,14 +693,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .story-portraits {
   display: flex;
-  gap: 1.5rem;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   justify-content: center;
   position: relative;
+  width: 100%;
 }
 
 .portrait-card {
   position: relative;
-  width: 48%;
+  width: calc(50% - 0.75rem);
+  max-width: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -711,6 +731,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -784,16 +805,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    -------------------------------------------------------------------------- */
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  max-width: 720px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1.2rem, 3vw, 2rem);
+  max-width: 1040px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .detail-card {
   background: var(--color-surface);
   border: var(--border-gold-hairline);
-  padding: 2.5rem 1.8rem;
+  padding: clamp(1.8rem, 4vw, 2.5rem) clamp(1rem, 3vw, 1.8rem);
   border-radius: var(--radius-md);
   text-align: center;
   box-shadow: var(--shadow-subtle);
@@ -802,6 +824,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .detail-card:hover {
@@ -932,20 +955,23 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.6rem, 2.5vw, 2.5rem);
+  gap: clamp(0.35rem, 2vw, 2.5rem);
   margin-bottom: 2.5rem;
+  width: 100%;
 }
 
 .countdown-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: clamp(60px, 12vw, 110px);
+  min-width: clamp(48px, 11vw, 110px);
+  flex: 1 1 0;
+  max-width: 120px;
 }
 
 .countdown-number {
   font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  font-size: clamp(1.8rem, 5.5vw, 4.8rem);
   font-weight: 300;
   line-height: 1;
   color: #FFFFFF;
@@ -954,8 +980,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .countdown-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
+  font-size: clamp(0.62rem, 1.4vw, 0.72rem);
+  letter-spacing: clamp(0.1em, 1.2vw, 0.22em);
   text-transform: uppercase;
   color: var(--color-gold-soft);
   margin-top: 0.6rem;
@@ -964,9 +990,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .countdown-separator {
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.2rem, 3.5vw, 3rem);
   color: rgba(184, 151, 88, 0.4);
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(0.8rem, 2vw, 1.5rem);
+  flex-shrink: 0;
 }
 
 .countdown-footer-msg {
@@ -997,6 +1024,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: var(--shadow-card);
 }
 
+.venue-card + .venue-card {
+  margin-top: 2.5rem;
+}
+
 .venue-image-wrapper {
   position: relative;
   min-height: 380px;
@@ -1022,21 +1053,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .venue-image-badge {
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
+  top: clamp(0.8rem, 2vw, 1.5rem);
+  left: clamp(0.8rem, 2vw, 1.5rem);
   background: var(--color-surface-glass);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: var(--border-gold-hairline);
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
+  font-size: clamp(0.65rem, 1.2vw, 0.7rem);
+  letter-spacing: clamp(0.1em, 1.2vw, 0.18em);
   text-transform: uppercase;
   color: var(--color-text-main);
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.8rem;
   border-radius: var(--radius-full);
 }
 
 .venue-info-box {
-  padding: clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(1.4rem, 4vw, 3.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1049,9 +1081,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .venue-name {
-  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
   margin-bottom: 0.5rem;
   color: var(--color-text-main);
+  word-break: break-word;
 }
 
 .venue-address {
@@ -1123,24 +1156,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   border: var(--border-gold-hairline);
   box-shadow: var(--shadow-subtle);
   background-color: #EDE7DE;
 }
 
 .gallery-item--large .gallery-frame {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
 }
 
 .gallery-item--wide .gallery-frame {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 4;
 }
 
 .gallery-thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1359,42 +1393,43 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .lightbox-btn {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #FFFFFF;
-  width: 48px;
-  height: 48px;
+  width: clamp(40px, 5vw, 48px);
+  height: clamp(40px, 5vw, 48px);
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: var(--transition-fast);
-  backdrop-filter: blur(6px);
-  z-index: 5;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 220;
 }
 
 .lightbox-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.3);
   border-color: var(--color-gold);
   color: var(--color-gold);
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .lightbox-btn--close {
-  top: -3.5rem;
-  right: 0;
+  top: max(1.2rem, env(safe-area-inset-top, 1.2rem));
+  right: max(1.2rem, env(safe-area-inset-right, 1.2rem));
 }
 
 .lightbox-btn--prev {
-  left: -4.5rem;
+  left: max(1rem, env(safe-area-inset-left, 1rem));
   top: 50%;
   transform: translateY(-50%);
 }
 
 .lightbox-btn--next {
-  right: -4.5rem;
+  right: max(1rem, env(safe-area-inset-right, 1rem));
   top: 50%;
   transform: translateY(-50%);
 }
@@ -1420,10 +1455,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .reveal-delay-3 { transition-delay: 0.36s; }
 
 /* --------------------------------------------------------------------------
-   18. Responsive Media Queries
+   18. Responsive Media Queries (All Devices, Scales & Orientations)
    -------------------------------------------------------------------------- */
 
-/* Tablet (max-width: 1024px) */
+/* Ultra-Wide / 4K Displays (min-width: 1600px) */
+@media (min-width: 1600px) {
+  :root {
+    --container-max: 1280px;
+  }
+
+  .hero-invitation-card {
+    max-width: 840px;
+    padding: 5rem 4.5rem;
+  }
+}
+
+/* Tablets & Small Laptops (max-width: 1024px) */
 @media (max-width: 1024px) {
   .story-layout {
     grid-template-columns: 1fr;
@@ -1431,7 +1478,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .story-portraits {
-    max-width: 540px;
+    max-width: 520px;
     margin: 0 auto;
   }
 
@@ -1454,16 +1501,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gallery-item--large {
-    grid-column: span 2;
-    grid-row: span 1;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.5rem;
   }
 }
 
-/* Mobile Devices (max-width: 768px) */
+/* Tablets in Portrait & Large Phones (max-width: 768px) */
 @media (max-width: 768px) {
   /* Navigation */
   .nav-desktop {
@@ -1474,10 +1517,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     display: flex;
   }
 
-  /* Audio Widget on Mobile */
+  /* Audio Widget */
   .audio-widget {
-    bottom: 1.2rem;
-    right: 1.2rem;
+    bottom: max(1.2rem, env(safe-area-inset-bottom, 1.2rem));
+    right: max(1.2rem, env(safe-area-inset-right, 1.2rem));
   }
 
   .audio-label {
@@ -1486,30 +1529,49 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
   .audio-btn {
     padding: 0.75rem;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
   }
 
   /* Hero Section */
   .botanical-frame-container {
-    inset: 0.8rem;
+    inset: clamp(0.5rem, 1.5vw, 1rem);
+  }
+
+  .botanical-corner {
+    width: clamp(50px, 10vw, 90px);
+    height: clamp(50px, 10vw, 90px);
+    opacity: 0.65;
   }
 
   .hero-invitation-card {
-    padding: 2.2rem 1.2rem;
+    padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 3vw, 1.8rem);
   }
 
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+    gap: 0.8rem;
   }
 
   .hero-cta-group .btn {
     width: 100%;
+    min-height: 46px;
   }
 
-  /* Gallery Mobile */
+  /* Details Grid */
+  .details-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Gallery Grid Mobile Stack */
   .gallery-grid {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    max-width: 440px;
+    margin: 0 auto;
+    gap: 1.5rem;
   }
 
   .gallery-item--large,
@@ -1517,18 +1579,266 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     grid-column: span 1;
   }
 
-  /* Lightbox Controls on Mobile */
+  /* Lightbox Controls Mobile */
+  .lightbox-btn--close {
+    top: max(1rem, env(safe-area-inset-top, 1rem));
+    right: max(1rem, env(safe-area-inset-right, 1rem));
+  }
+
   .lightbox-btn--prev {
-    left: 0.5rem;
+    left: max(0.5rem, env(safe-area-inset-left, 0.5rem));
   }
 
   .lightbox-btn--next {
-    right: 0.5rem;
+    right: max(0.5rem, env(safe-area-inset-right, 0.5rem));
+  }
+}
+
+/* Standard Mobile Devices (max-width: 560px) */
+@media (max-width: 560px) {
+  .section {
+    padding: clamp(3rem, 7vh, 5rem) clamp(0.85rem, 3vw, 1.25rem);
   }
 
-  .lightbox-btn--close {
-    top: 1rem;
-    right: 1rem;
+  .story-portraits {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
   }
 
+  .portrait-card {
+    width: 100%;
+    max-width: 290px;
+  }
+
+  .portrait-card--primary,
+  .portrait-card--secondary {
+    transform: none;
+  }
+
+  /* Countdown Timer */
+  .countdown-timer {
+    gap: 0.35rem;
+    margin-bottom: 2rem;
+  }
+
+  .countdown-item {
+    min-width: auto;
+    flex: 1 1 0;
+  }
+
+  .countdown-number {
+    font-size: clamp(1.7rem, 7.5vw, 2.6rem);
+  }
+
+  .countdown-separator {
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+    margin-bottom: 0.7rem;
+  }
+
+  .countdown-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* Venue Mobile Sizing */
+  .venue-card + .venue-card {
+    margin-top: 1.8rem;
+  }
+
+  .venue-image-wrapper {
+    min-height: clamp(220px, 48vw, 300px);
+  }
+
+  .venue-info-box {
+    padding: clamp(1.4rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .venue-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .venue-actions .btn {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+  }
+
+  /* Final section */
+  .final-closing {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  .final-names {
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+  }
+}
+
+/* Small Phones & Foldable Outer Screens (max-width: 380px) */
+@media (max-width: 380px) {
+  .section {
+    padding: 2.8rem 0.65rem;
+  }
+
+  .hero-section {
+    padding: 4.2rem 0.5rem 2rem;
+  }
+
+  .hero-invitation-card {
+    padding: 1.5rem 0.65rem;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Hide corners on extra small screens for maximum readability */
+  .botanical-corner {
+    display: none;
+  }
+
+  .botanical-frame-container {
+    inset: 0.35rem;
+  }
+
+  .hero-pretitle {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-name-bride,
+  .hero-name-groom {
+    font-size: 1.65rem;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-ampersand {
+    font-size: 1.5rem;
+    margin: 0.1rem 0;
+  }
+
+  .hero-date {
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-location-preview {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-card {
+    padding: 1.4rem 0.75rem;
+  }
+
+  .detail-title {
+    font-size: 1.25rem;
+  }
+
+  .detail-time {
+    font-size: 0.95rem;
+  }
+
+  .countdown-number {
+    font-size: 1.45rem;
+  }
+
+  .countdown-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+  }
+
+  .venue-info-box {
+    padding: 1.2rem 0.75rem;
+  }
+
+  .venue-name {
+    font-size: 1.25rem;
+  }
+
+  .venue-address {
+    font-size: 0.82rem;
+  }
+
+  .venue-description {
+    font-size: 0.85rem;
+  }
+
+  .footer-copy,
+  .footer-note {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Mobile Devices in Landscape Orientation */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero-section {
+    min-height: auto;
+    padding-top: 4.8rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .nav-mobile-inner {
+    padding: 1rem;
+  }
+
+  .mobile-monogram {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .nav-mobile-list {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .nav-mobile-date {
+    font-size: 0.75rem;
+  }
+
+  .lightbox-img {
+    max-height: 68vh;
+  }
+
+  .lightbox-dialog {
+    max-height: 96vh;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .site-header,
+  .audio-widget,
+  .scroll-indicator,
+  .lightbox-modal,
+  .venue-actions,
+  .hero-cta-group {
+    display: none !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  .section {
+    padding: 2rem 0 !important;
+    page-break-inside: avoid;
+  }
 }
